@@ -10,12 +10,13 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${ibmPlexMono.className} h-full antialiased`}>
-      <body className="min-h-full flex flex-col bg-[#FFFFFF]">
+      <body
+        className="min-h-full flex flex-col bg-[#FFFFFF]"
+        suppressHydrationWarning
+      >
         <Navbar></Navbar>
-        <main>
-        {children}
-        </main>
-        </body>
+        <main>{children}</main>
+      </body>
     </html>
   );
 }

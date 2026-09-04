@@ -1,0 +1,114 @@
+[
+  {
+    "id": "01",
+    "name": "Crimson Echo Tee",
+    "ColorWay": "Crimson Red",
+    "price": 31.99,
+    "qty": 45,
+    "size": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": "A crimson echo cuts through the silence, bold, fierce, unforgettable. 240gsm heavyweight cotton. Oversized fit. Garment washed. Anime graphic screenprint",
+    "images": [
+      "/images/Blue-flame-1.avif",
+      "/images/Blue-flame-2.avif",
+      "/images/Blue-flame-3.avif",
+      "/images/Blue-flame-4.avif"
+    ],
+    "type": "sale"
+  },
+  {
+    "id": "02",
+    "name": "Bushido Tee",
+    "ColorWay": "Sand",
+    "price": 34.99,
+    "qty": 60,
+    "size": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": "The shadow wolf hunts beneath a moonless sky, quiet, wild, relentless. 240gsm heavyweight cotton. Oversized fit. Garment washed. Anime graphic screenprint",
+    "images": [
+      "/images/Bushido-1.avif",
+      "/images/Bushido-2.avif",
+      "/images/Bushido-3.avif",
+      "/images/Bushido-4.avif"
+    ],
+    "type": "Limited"
+  },
+  {
+    "id": "03",
+    "name": "Demon Blood Tee",
+    "ColorWay": "Crimson Pink",
+    "price": 32.99,
+    "qty": 35,
+    "size": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": "Neon energy explodes through the night, electric, chaotic, unstoppable. 240gsm heavyweight cotton. Oversized fit. Garment washed. Anime graphic screenprint",
+     "images": [
+      "/images/Demon-blood-1.avif",
+      "/images/Demon-blood-2.avif",
+      "/images/Demon-blood-3.avif",
+      "/images/Demon-blood-4.avif"
+    ],
+    "type": "sale"
+  },
+  {
+    "id": "04",
+    "name": "Domain Expansion Tee",
+    "ColorWay": "Void Purple",
+    "price": 29.99,
+    "qty": 55,
+    "size": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": "Under the silent moon, shadows awaken and forgotten stories begin. 240gsm heavyweight cotton. Oversized fit. Garment washed. Anime graphic screenprint",
+    "images": [
+      "/images/Domain-expansion-1.avif",
+      "/images/Domain-expansion-2.avif",
+      "/images/Domain-expansion-3.avif",
+      "/images/Domain-expansion-4.avif"
+    ],
+    "type": "sale"
+  },
+  {
+    "id": "05",
+    "name": "Free Soul Tee",
+    "ColorWay": "Ash White",
+    "price": 36.99,
+    "qty": 40,
+    "size": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": "An inferno burns within, fueled by passion, anger, and an unbreakable spirit. 240gsm heavyweight cotton. Oversized fit. Garment washed. Anime graphic screenprint",
+    "images": [
+      "/images/Free-soul-1.avif",
+      "/images/Free-soul-2.avif",
+      "/images/Free-soul-3.avif",
+      "/images/Free-soul-5.avif"
+    ],
+    "type": "Limited"
+  },
+  {
+    "id": "06",
+    "name": "Limitless Tee",
+    "ColorWay": "Shadow Olive",
+    "price": 30.99,
+    "qty": 70,
+    "size": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": "Cold as winter, sharp as ice, the frozen warrior never backs down. 240gsm heavyweight cotton. Oversized fit. Garment washed. Anime graphic screenprint",
+    "images": [
+      "/images/Limitless-1.avif",
+      "/images/Limitless-2.avif",
+      "/images/Limitless-3.avif",
+      "/images/Limitless-4.avif"
+    ],
+    "type": "Limited"
+  },
+  {
+    "id": "07",
+    "name": "Paradise Spirit Tee",
+    "ColorWay": "Sage Olive",
+    "price": 35.99,
+    "qty": 30,
+    "size": ["XS", "S", "M", "L", "XL", "XXL"],
+    "details": "The violet phantom moves unseen, mysterious, precise, and deadly silent. 240gsm heavyweight cotton. Oversized fit. Garment washed. Anime graphic screenprint",
+    "images": [
+      "/images/Paradise-spirit-1.avif",
+      "/images/Paradise-spirit-2.avif",
+      "/images/Paradise-spirit-3.avif",
+      "/images/Paradise-spirit-4.avif"
+    ],
+    "type": "New Arrival"
+  }
+]

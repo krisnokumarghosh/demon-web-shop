@@ -23,7 +23,7 @@ const Marquee = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 w-full h-10 z-[60] bg-red-600 flex items-center transition-transform duration-300 ${
+      className={`fixed top-0 left-0 w-full h-10 z-60 bg-red-600 flex items-center transition-transform duration-300 ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >

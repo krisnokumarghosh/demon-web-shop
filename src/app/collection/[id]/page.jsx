@@ -2,10 +2,19 @@ import ProductDetailsClient from "@/components/shared/ProductDetailsClient";
 
 const DATA_URL = "https://demon-web-shop.vercel.app/data.json";
 
+export const generateMetadata = async ({ params }) => {
+  const { id } = await params;
+  const res = await fetch(DATA_URL, { cache: "no-store" });
+  const data = await res.json();
+  const product = data.find((p) => p.id === id);
+
+  return {
+    title: `${product.name} | Collections`,
+  };
+};
+
 const ProductDetailsPage = async ({ params }) => {
   const { id } = await params;
-  console.log(params)
-
   const res = await fetch(DATA_URL, { cache: "no-store" });
   const data = await res.json();
   const product = data.find((p) => p.id === id);

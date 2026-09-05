@@ -291,7 +291,7 @@ const SaleCard = forwardRef(({ product }, ref) => {
         </p>
 
         <Link
-          href={`/product/${id}`}
+          href={`/collection/${id}`}
           className="group inline-flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white hover:text-red-600 border-b border-white/40 hover:border-red-600 pb-1 transition-colors duration-200"
         >
           Shop {name}

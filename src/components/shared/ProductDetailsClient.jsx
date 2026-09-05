@@ -14,6 +14,8 @@ import {
   ShieldCheck,
   RotateCcw,
 } from "lucide-react";
+import { antonFont } from "@/lib/fonts";
+import { ArrowRight, Heart } from "@gravity-ui/icons";
 
 // Change this if your product images live in the local /public folder
 // instead of being served from the API's own domain.
@@ -185,10 +187,10 @@ const ProductDetailsClient = ({ product }) => {
             <p className="text-red-600 text-xs font-bold tracking-widest uppercase mb-3">
               {type}
             </p>
-            <h1 className="text-black font-black text-4xl md:text-5xl leading-none tracking-tight mb-3">
+            <h1 className={`${antonFont.className} text-black font-black text-4xl md:text-5xl leading-none tracking-tight mb-3`}>
               {name}
             </h1>
-            <p className="text-2xl font-bold text-black mb-5">${price}</p>
+            <p className={`${antonFont.className} text-2xl font-bold text-black mb-5`}>${price}</p>
 
             <div className="flex items-center gap-2 mb-6">
               <span
@@ -208,7 +210,7 @@ const ProductDetailsClient = ({ product }) => {
             )}
 
             {/* Size + actions */}
-            <p className="text-xs font-bold uppercase tracking-widest text-black mb-3">
+            <p className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-black mb-3`}>
               Select Size
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
@@ -228,11 +230,11 @@ const ProductDetailsClient = ({ product }) => {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <button className="border border-black text-black text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-black hover:text-white transition-colors duration-200">
-                <span>&#9825;</span> Wishlist
+              <button className={`${antonFont.className} border border-black text-black text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-black hover:text-white transition-colors duration-200`}>
+                <Heart/> Wishlist
               </button>
-              <button className="bg-black text-white text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-black/85 transition-colors duration-200">
-                Add to Cart <span>&rarr;</span>
+              <button className={`${antonFont.className} bg-black text-white text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-red-700 transition-colors duration-200`}>
+                Add to Cart <ArrowRight></ArrowRight>
               </button>
             </div>
 
@@ -241,7 +243,7 @@ const ProductDetailsClient = ({ product }) => {
 
             {/* Product Details accordion trigger-free section */}
             <div className="mt-10 pt-8 border-t border-black/10">
-              <h2 className="text-xs font-bold tracking-widest uppercase text-black/50 mb-4">
+              <h2 className={`${antonFont.className} text-xs font-bold tracking-widest uppercase text-black/50 mb-4`}>
                 Product Details
               </h2>
               <p className="text-sm text-black/60 leading-relaxed">
@@ -319,7 +321,7 @@ const AccordionRow = ({ title, isOpen, onToggle, children }) => {
         onClick={onToggle}
         className="w-full flex items-center justify-between"
       >
-        <span className="text-xs font-bold uppercase tracking-widest text-black">
+        <span className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-black`}>
           {title}
         </span>
         <span className="w-7 h-7 border border-red-500 text-red-500 flex items-center justify-center text-sm font-bold">

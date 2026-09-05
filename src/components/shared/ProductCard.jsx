@@ -38,6 +38,7 @@ const ProductCard = ({ product }) => {
       <div className="">
         <div className="relative overflow-hidden bg-neutral-100">
           <div className="relative aspect-3/4">
+          <Link href={`/collection/${id}`}>
             <Image
               src={
                 image?.startsWith("http") ? image : `${IMAGE_BASE}${image}`
@@ -47,6 +48,7 @@ const ProductCard = ({ product }) => {
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
               className="object-cover"
             />
+          </Link>
 
             {isSale && (
               <div className="absolute -left-10 top-5 -rotate-45 bg-red-600 text-white text-[10px] font-bold uppercase tracking-widest w-36 py-1 text-center shadow-md">

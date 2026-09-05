@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { antonFont } from "@/lib/fonts";
 
 const DATA_URL = "https://demon-web-shop.vercel.app/data.json";
 
@@ -209,19 +210,19 @@ const SaleSection = () => {
           pinned stack takes over. Not part of the pinned area. */}
       <div className="px-6 md:px-10 py-16 md:py-20 bg-linear-to-b from-[#fff5f0] to-white flex items-end justify-between">
         <div>
-          <p className="text-xs font-bold uppercase tracking-widest text-red-600 mb-2">
+          <p className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-red-600 mb-2`}>
             Collection // The_Origin_Drop
           </p>
-          <h2 className="font-black uppercase text-black text-5xl md:text-7xl leading-none">
+          <h2 className={`${antonFont.className} font-black uppercase text-black text-5xl md:text-7xl leading-none`}>
             Sale
           </h2>
         </div>
 
         <Link
           href="/collection"
-          className="hidden md:inline-block border border-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors duration-200"
+          className={`${antonFont.className} hidden md:inline-block border border-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors duration-200`}
         >
-          View_All
+          View All
         </Link>
       </div>
 
@@ -277,11 +278,11 @@ const SaleCard = forwardRef(({ product }, ref) => {
       </span>
 
       <div className="absolute bottom-0 left-0 right-0 p-6 md:p-10">
-        <p className="text-xs md:text-sm font-bold uppercase tracking-widest text-red-500 mb-2">
+        <p className={`${antonFont.className} text-xs md:text-sm font-bold uppercase tracking-widest text-red-500 mb-2`}>
           Collection // The_Origin_Drop
         </p>
 
-        <h3 className="font-black uppercase text-white text-3xl md:text-5xl leading-tight mb-2">
+        <h3 className={`${antonFont.className} font-black uppercase text-white text-3xl md:text-5xl leading-tight mb-2`}>
           {name}
         </h3>
 
@@ -291,7 +292,7 @@ const SaleCard = forwardRef(({ product }, ref) => {
 
         <Link
           href={`/product/${id}`}
-          className="group inline-flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white border-b border-white/40 hover:border-white pb-1 transition-colors duration-200"
+          className="group inline-flex items-center gap-2 text-xs md:text-sm font-bold uppercase tracking-widest text-white hover:text-red-600 border-b border-white/40 hover:border-red-600 pb-1 transition-colors duration-200"
         >
           Shop {name}
           <span className="transition-transform duration-200 group-hover:translate-x-1">

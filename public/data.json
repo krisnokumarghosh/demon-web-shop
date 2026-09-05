@@ -13,7 +13,8 @@
       "/images/Blue-flame-3.avif",
       "/images/Blue-flame-4.avif"
     ],
-    "type": "sale"
+    "type": "sale",
+    "latest": true
   },
   {
     "id": "02",
@@ -61,7 +62,8 @@
       "/images/Domain-expansion-3.avif",
       "/images/Domain-expansion-4.avif"
     ],
-    "type": "sale"
+    "type": "sale",
+    "latest": true
   },
   {
     "id": "05",
@@ -93,7 +95,8 @@
       "/images/Limitless-3.avif",
       "/images/Limitless-4.avif"
     ],
-    "type": "Limited"
+    "type": "Limited",
+    "latest": true
   },
   {
     "id": "07",
@@ -109,6 +112,7 @@
       "/images/Paradise-spirit-3.avif",
       "/images/Paradise-spirit-4.avif"
     ],
-    "type": "New Arrival"
+    "type": "New Arrival",
+    "latest": true
   }
 ]

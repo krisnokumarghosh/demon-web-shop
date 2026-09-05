@@ -33,7 +33,7 @@ const ProductCard = ({ product }) => {
   return (
     // Whole card lifts as one unit on hover — image, info, buttons all
     // move together, nothing splits apart.
-    <div className="group border border-black  transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl">
+    <div className="group border border-black transition-all duration-300 ease-out hover:-translate-y-2 hover:shadow-xl">
       {/* Image sits inset inside a padded frame, not edge-to-edge */}
       <div className="">
         <div className="relative overflow-hidden bg-neutral-100">

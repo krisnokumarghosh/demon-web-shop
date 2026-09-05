@@ -57,7 +57,7 @@ const ProductCard = ({ product }) => {
 
           {/* Quick view bar — hidden below the image, slides up on hover */}
           <Link
-            href={`/product/${id}`}
+            href={`/collection/${id}`}
             className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out bg-black text-white text-xs font-bold uppercase tracking-widest py-3 flex items-center justify-center gap-2"
           >
             Quick View

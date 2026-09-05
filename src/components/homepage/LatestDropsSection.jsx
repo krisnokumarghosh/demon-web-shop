@@ -79,7 +79,7 @@ const LatestDropsSection = () => {
         </div>
 
         <Link
-          href="/collection"
+          href="/drop"
           className={`${antonFont.className} hidden md:inline-block border border-black px-5 py-2.5 text-xs font-bold uppercase tracking-widest text-black hover:bg-black hover:text-white transition-colors duration-200`}
         >
           View_All

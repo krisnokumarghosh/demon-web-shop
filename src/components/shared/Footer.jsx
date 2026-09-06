@@ -6,17 +6,17 @@ const linkColumns = [
   {
     title: "Drops",
     links: [
-      { label: "Home", href: "/" },
-      { label: "Drop", href: "/drop" },
-      { label: "Collection", href: "/collection" },
+      { label: "Home"},
+      { label: "Drop" },
+      { label: "Collection" },
     ],
   },
   {
     title: "Explore",
     links: [
-      { label: "Lookbook", href: "/lookbook" },
-      { label: "Our Story", href: "/our-story" },
-      { label: "Size Guide", href: "/size-guide" },
+      { label: "Lookbook" },
+      { label: "Our Story"},
+      { label: "Size Guide" },
     ],
   },
   {
@@ -30,13 +30,13 @@ const linkColumns = [
   {
     title: "Contact",
     links: [
-      { label: "FAQ", href: "/faq" },
-      { label: "Reviews", href: "/reviews" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Terms", href: "/terms" },
-      { label: "Help", href: "/help" },
-      { label: "Return Policy", href: "/returns" },
-      { label: "Contact Us", href: "/contact" },
+      { label: "FAQ" },
+      { label: "Reviews" },
+      { label: "Privacy Policy" },
+      { label: "Terms" },
+      { label: "Help" },
+      { label: "Return Policy" },
+      { label: "Contact Us"},
     ],
   },
 ];
@@ -110,7 +110,7 @@ const Footer = () => {
               <LogoMark />
             </Link>
 
-            <p className="font-mono text-sm text-white/50 leading-relaxed max-w-[280px] mb-8">
+            <p className="font-mono text-sm text-white/50 leading-relaxed max-w-70 mb-8">
               Wear the Arc. Anime-inspired streetwear for gamers and otaku.
               Every drop limited. No restocks. Ever.
             </p>
@@ -145,12 +145,11 @@ const Footer = () => {
                 <ul className="space-y-3.5">
                   {col.links.map((link) => (
                     <li key={link.label}>
-                      <Link
-                        href={link.href}
+                      <p
                         className="text-sm font-semibold text-white/90 hover:text-red-500 transition-colors duration-200"
                       >
                         {link.label}
-                      </Link>
+                      </p>
                     </li>
                   ))}
                 </ul>
@@ -168,25 +167,17 @@ const Footer = () => {
             final. No restocks. Ever.
           </p>
 
-          <button
-            onClick={() =>
-              window.scrollTo({ top: 0, behavior: "smooth" })
-            }
-            className="order-1 md:order-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold uppercase tracking-widest px-5 py-2 rounded-full transition-colors duration-200"
-          >
-            Start
-          </button>
-
+          
           <div className="order-3 flex items-center gap-6 text-xs text-white/40 font-mono">
-            <Link href="/privacy" className="hover:text-white transition-colors">
+            <p className="hover:text-white transition-colors">
               Privacy
-            </Link>
-            <Link href="/terms" className="hover:text-white transition-colors">
+            </p>
+            <p className="hover:text-white transition-colors">
               Terms
-            </Link>
-            <Link href="/cookies" className="hover:text-white transition-colors">
+            </p>
+            <p className="hover:text-white transition-colors">
               Cookies
-            </Link>
+            </p>
             <span className="hidden sm:flex items-center gap-2">
               <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
               Anime-inspired. Gamer-built. Community-owned.

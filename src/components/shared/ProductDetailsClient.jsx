@@ -80,43 +80,77 @@ const ProductDetailsClient = ({ product }) => {
     activeImageRef.current = activeImage;
   }, [activeImage]);
 
-  // Image changes ONLY when the wheel/trackpad is used directly over
-  // the image box — normal page scroll everywhere else is untouched.
-  // One wheel "tick" moves exactly one image (locked for a short
-  // cooldown so a trackpad's burst of tiny delta events doesn't skip
-  // 2-3 images at once). At the first/last image, scrolling further
-  // in that direction is NOT captured, so the page scrolls normally.
+  // Image changes ONLY when the wheel/trackpad/touch is used directly
+  // over the image box — normal page scroll everywhere else, and past
+  // the first/last image, is left completely untouched.
   useEffect(() => {
     const box = imageBoxRef.current;
     if (!box || images.length < 2) return;
 
-    const handleWheel = (e) => {
-      const goingForward = e.deltaY > 0;
+    // Shared step logic used by both wheel (desktop) and touch swipe
+    // (mobile) below. Defined inside the effect so it doesn't need to
+    // be a dependency — it only ever reads refs and `images.length`,
+    // which this effect already re-runs on.
+    const attemptChange = (goingForward) => {
       const atStart = activeImageRef.current === 0;
       const atEnd = activeImageRef.current === images.length - 1;
 
-      // Let the page scroll normally past this element at the edges.
       if ((goingForward && atEnd) || (!goingForward && atStart)) {
-        return;
+        return false; // let normal page scroll continue
       }
 
-      e.preventDefault();
-      if (lockedRef.current) return;
+      if (!lockedRef.current) {
+        lockedRef.current = true;
+        setActiveImage((prev) =>
+          goingForward
+            ? Math.min(images.length - 1, prev + 1)
+            : Math.max(0, prev - 1),
+        );
+        setTimeout(() => {
+          lockedRef.current = false;
+        }, 550);
+      }
 
-      lockedRef.current = true;
-      setActiveImage((prev) =>
-        goingForward
-          ? Math.min(images.length - 1, prev + 1)
-          : Math.max(0, prev - 1)
-      );
+      return true; // captured — caller should preventDefault
+    };
 
-      setTimeout(() => {
-        lockedRef.current = false;
-      }, 550);
+    // --- Desktop: mouse wheel / trackpad ---
+    const handleWheel = (e) => {
+      const captured = attemptChange(e.deltaY > 0);
+      if (captured) e.preventDefault();
+    };
+
+    // --- Mobile/touch: vertical swipe ---
+    let startY = 0;
+    const SWIPE_THRESHOLD = 40; // px of finger movement before it counts
+
+    const handleTouchStart = (e) => {
+      startY = e.touches[0].clientY;
+    };
+
+    const handleTouchMove = (e) => {
+      const currentY = e.touches[0].clientY;
+      const delta = startY - currentY; // > 0 = finger moving up = next image
+      const goingForward = delta > 0;
+
+      if (Math.abs(delta) < SWIPE_THRESHOLD) return;
+
+      const captured = attemptChange(goingForward);
+      if (captured) {
+        e.preventDefault();
+        startY = currentY; // allow one long swipe to step through several images
+      }
     };
 
     box.addEventListener("wheel", handleWheel, { passive: false });
-    return () => box.removeEventListener("wheel", handleWheel);
+    box.addEventListener("touchstart", handleTouchStart, { passive: true });
+    box.addEventListener("touchmove", handleTouchMove, { passive: false });
+
+    return () => {
+      box.removeEventListener("wheel", handleWheel);
+      box.removeEventListener("touchstart", handleTouchStart);
+      box.removeEventListener("touchmove", handleTouchMove);
+    };
   }, [images.length]);
 
   return (
@@ -171,9 +205,7 @@ const ProductDetailsClient = ({ product }) => {
                     <span
                       key={i}
                       className={`h-1.5 rounded-full transition-all duration-300 ${
-                        activeImage === i
-                          ? "w-6 bg-white"
-                          : "w-1.5 bg-white/40"
+                        activeImage === i ? "w-6 bg-white" : "w-1.5 bg-white/40"
                       }`}
                     />
                   ))}
@@ -187,10 +219,16 @@ const ProductDetailsClient = ({ product }) => {
             <p className="text-red-600 text-xs font-bold tracking-widest uppercase mb-3">
               {type}
             </p>
-            <h1 className={`${antonFont.className} text-black font-black text-4xl md:text-5xl leading-none tracking-tight mb-3`}>
+            <h1
+              className={`${antonFont.className} text-black font-black text-4xl md:text-5xl leading-none tracking-tight mb-3`}
+            >
               {name}
             </h1>
-            <p className={`${antonFont.className} text-2xl font-bold text-black mb-5`}>${price}</p>
+            <p
+              className={`${antonFont.className} text-2xl font-bold text-black mb-5`}
+            >
+              ${price}
+            </p>
 
             <div className="flex items-center gap-2 mb-6">
               <span
@@ -210,7 +248,9 @@ const ProductDetailsClient = ({ product }) => {
             )}
 
             {/* Size + actions */}
-            <p className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-black mb-3`}>
+            <p
+              className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-black mb-3`}
+            >
               Select Size
             </p>
             <div className="flex flex-wrap gap-2 mb-6">
@@ -230,25 +270,28 @@ const ProductDetailsClient = ({ product }) => {
             </div>
 
             <div className="grid grid-cols-2 gap-3">
-              <button className={`${antonFont.className} border border-black text-black text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-black hover:text-white transition-colors duration-200`}>
-                <Heart/> Wishlist
+              <button
+                className={`${antonFont.className} border border-black text-black text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-black hover:text-white transition-colors duration-200`}
+              >
+                <Heart /> Wishlist
               </button>
-              <button className={`${antonFont.className} bg-black text-white text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-red-700 transition-colors duration-200`}>
+              <button
+                className={`${antonFont.className} bg-black text-white text-xs font-bold uppercase tracking-widest py-3.5 flex items-center justify-center gap-1.5 hover:bg-red-700 transition-colors duration-200`}
+              >
                 Add to Cart <ArrowRight></ArrowRight>
               </button>
             </div>
 
             {/* Specification grid */}
-           
 
             {/* Product Details accordion trigger-free section */}
             <div className="mt-10 pt-8 border-t border-black/10">
-              <h2 className={`${antonFont.className} text-xs font-bold tracking-widest uppercase text-black/50 mb-4`}>
+              <h2
+                className={`${antonFont.className} text-xs font-bold tracking-widest uppercase text-black/50 mb-4`}
+              >
                 Product Details
               </h2>
-              <p className="text-sm text-black/60 leading-relaxed">
-                {details}
-              </p>
+              <p className="text-sm text-black/60 leading-relaxed">{details}</p>
             </div>
 
             {/* Accordion: Size Guide */}
@@ -273,9 +316,7 @@ const ProductDetailsClient = ({ product }) => {
                         <td className="py-2 pr-4 font-bold text-red-600">
                           {row.size}
                         </td>
-                        <td className="py-2 pr-4 text-black/70">
-                          {row.chest}
-                        </td>
+                        <td className="py-2 pr-4 text-black/70">{row.chest}</td>
                         <td className="py-2 pr-4 text-black/70">
                           {row.length}
                         </td>
@@ -286,8 +327,8 @@ const ProductDetailsClient = ({ product }) => {
                 </table>
               </div>
               <p className="mt-4 text-xs text-black/50 border-l-2 border-black pl-3">
-                Oversized fit — size down if between sizes. Garment
-                measurements in cm.
+                Oversized fit — size down if between sizes. Garment measurements
+                in cm.
               </p>
             </AccordionRow>
 
@@ -306,7 +347,6 @@ const ProductDetailsClient = ({ product }) => {
             </AccordionRow>
 
             {/* Trust badges */}
-           
           </div>
         </div>
       </div>
@@ -321,7 +361,9 @@ const AccordionRow = ({ title, isOpen, onToggle, children }) => {
         onClick={onToggle}
         className="w-full flex items-center justify-between"
       >
-        <span className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-black`}>
+        <span
+          className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-black`}
+        >
           {title}
         </span>
         <span className="w-7 h-7 border border-red-500 text-red-500 flex items-center justify-center text-sm font-bold">

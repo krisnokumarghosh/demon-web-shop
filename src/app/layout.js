@@ -1,6 +1,7 @@
 import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
 import { ibmPlexMono } from "@/lib/fonts";
+import Footer from "@/components/shared/Footer";
 
 export const metadata = {
   title: {
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
       >
         <Navbar></Navbar>
         <main>{children}</main>
+        <Footer/>
       </body>
     </html>
   );

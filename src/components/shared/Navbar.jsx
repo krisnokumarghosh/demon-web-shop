@@ -20,7 +20,7 @@ const navLinks = [
   { name: "Drop", href: "/drop" },
   { name: "Collection", href: "/collection" },
   { name: "Lookbook", href: "/lookbook" },
-  { name: "Our Story", href: "/our-story" },
+  { name: "Our Story", href: "/story" },
 ];
 
 const moreLinks = [

@@ -1,36 +1,262 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# ⚔️ Demon Web Shop
 
-## Getting Started
+A modern, anime-inspired fashion e-commerce frontend built with **Next.js**, featuring smooth scrolling, immersive animations, responsive layouts, and a visually distinctive shopping experience.
 
-First, run the development server:
+🔗 **Live Demo:** https://demon-web-shop.vercel.app
+
+---
+
+## ✨ Features
+
+* 🎴 Anime-inspired modern UI
+* 🛍️ Product collection browsing
+* 🔎 Individual product details pages
+* 🎨 Multiple product variations
+* 📱 Fully responsive design
+* 🌀 Smooth scrolling with **Lenis**
+* 🎬 Interactive animations with **Framer Motion**
+* ⚡ Fast navigation with Next.js App Router
+* 🖼️ High-quality product imagery
+* 🎞️ Video-based hero section
+* 📜 Lookbook section
+* 📖 Brand story section
+* 🏷️ Latest drops & sale sections
+* 📢 Animated marquee sections
+* 🎯 Reusable and component-based architecture
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+
+* **Next.js**
+* **React**
+* **JavaScript**
+* **Tailwind CSS**
+
+### UI & Animation
+
+* **HeroUI**
+* **Framer Motion**
+* **Lenis**
+* **Gravity UI Icons**
+* **Lucide Icons**
+
+### Deployment
+
+* **Vercel**
+
+---
+
+## 📁 Project Structure
+
+```text
+demon-web-shop/
+│
+├── public/
+│   ├── images/
+│   │   ├── banner-2.jpg
+│   │   ├── Blue-flame-1.avif
+│   │   ├── Blue-flame-2.avif
+│   │   ├── Blue-flame-3.avif
+│   │   ├── Blue-flame-4.avif
+│   │   ├── Bushido-1.avif
+│   │   ├── Bushido-2.avif
+│   │   ├── Bushido-3.avif
+│   │   ├── Bushido-4.avif
+│   │   ├── Demon-blood-1.avif
+│   │   ├── Demon-blood-2.avif
+│   │   ├── Demon-blood-3.avif
+│   │   ├── Demon-blood-4.avif
+│   │   ├── Domain-expansion-1.avif
+│   │   ├── Domain-expansion-2.avif
+│   │   ├── Domain-expansion-3.avif
+│   │   ├── Domain-expansion-4.avif
+│   │   ├── Free-soul-1.avif
+│   │   ├── Free-soul-2.avif
+│   │   ├── Free-soul-5.avif
+│   │   ├── Limitless-1.avif
+│   │   ├── Limitless-2.avif
+│   │   ├── Limitless-3.avif
+│   │   ├── Limitless-4.avif
+│   │   ├── Paradise-spirit-1.avif
+│   │   ├── Paradise-spirit-2.avif
+│   │   ├── Paradise-spirit-3.avif
+│   │   └── Paradise-spirit-4.avif
+│   │
+│   ├── data.json
+│   ├── hero.mp4
+│   ├── katana.png
+│   └── ...
+│
+├── src/
+│   ├── app/
+│   │   ├── collection/
+│   │   │   ├── [id]/
+│   │   │   │   └── page.jsx
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── drop/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── lookbook/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── story/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── globals.css
+│   │   ├── icon.png
+│   │   ├── layout.js
+│   │   └── page.js
+│   │
+│   ├── components/
+│   │   ├── homepage/
+│   │   │   ├── HeroSection.jsx
+│   │   │   ├── LatestDropsSection.jsx
+│   │   │   ├── ManifestoSection.jsx
+│   │   │   ├── Marquee.jsx
+│   │   │   └── SaleSection.jsx
+│   │   │
+│   │   ├── shared/
+│   │   │   ├── Footer.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   ├── ProductCard.jsx
+│   │   │   └── ProductDetailsClient.jsx
+│   │   │
+│   │   ├── CollectionComponent.jsx
+│   │   └── SmoothScroll.jsx
+│   │
+│   └── lib/
+│       └── fonts.js
+│
+├── package.json
+├── package-lock.json
+└── README.md
+```
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/demon-web-shop.git
+```
+
+### 2. Navigate to the project
+
+```bash
+cd demon-web-shop
+```
+
+### 3. Install dependencies
+
+```bash
+npm install
+```
+
+### 4. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open **http://localhost:3000** in your browser to view the project.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🎨 Main Sections
 
-## Learn More
+### 🏠 Homepage
 
-To learn more about Next.js, take a look at the following resources:
+The homepage contains:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Hero section with video background
+* Latest product drops
+* Brand manifesto
+* Animated marquee
+* Sale section
+* Navigation and footer
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🛍️ Collection
 
-## Deploy on Vercel
+Users can browse the complete product collection and open individual products for detailed information.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### ⚡ Drops
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+A dedicated section for showcasing the latest product releases.
+
+### 📸 Lookbook
+
+A visual-focused section designed to showcase the brand and products through imagery.
+
+### 📖 Story
+
+A dedicated brand story section explaining the identity and concept behind Demon Web Shop.
+
+---
+
+## 🌀 Smooth Scrolling
+
+The project uses **Lenis** to create a smooth and premium scrolling experience across the website.
+
+The implementation is separated into a reusable component:
+
+```text
+src/components/SmoothScroll.jsx
+```
+
+This keeps the scrolling logic independent from the rest of the application.
+
+---
+
+## 🧩 Component Architecture
+
+The project follows a reusable component-based structure.
+
+### Homepage Components
+
+```text
+components/homepage/
+├── HeroSection.jsx
+├── LatestDropsSection.jsx
+├── ManifestoSection.jsx
+├── Marquee.jsx
+└── SaleSection.jsx
+```
+
+### Shared Components
+
+```text
+components/shared/
+├── Navbar.jsx
+├── Footer.jsx
+├── ProductCard.jsx
+└── ProductDetailsClient.jsx
+```
+
+This makes the UI easier to maintain and allows common components to be reused across different pages.
+
+---
+
+## 📱 Responsive Design
+
+Demon Web Shop is designed to provide a consistent experience across:
+
+* 📱 Mobile devices
+* 📲 Tablets
+* 💻 Laptops
+* 🖥️ Desktop screens
+
+The layout, typography, imagery, navigation, and animations adapt to different screen sizes.
+
+---
+
+## 🌐 Live Demo
+
+Experience the project here:
+
+**[Demon Web Shop](https://demon-web-shop.vercel.app)**

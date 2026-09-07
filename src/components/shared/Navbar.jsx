@@ -73,7 +73,9 @@ const Navbar = () => {
       <nav className="flex items-center justify-between px-6 md:px-10 py-4">
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <span className={`${antonFont.className} px-3 py-1.5 text-white font-black text-lg tracking-wide uppercase`}>
+          <span
+            className={`${antonFont.className} px-3 py-1.5 text-white font-black text-lg tracking-wide uppercase`}
+          >
             Demon Shop
           </span>
         </Link>
@@ -124,13 +126,12 @@ const Navbar = () => {
                   className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-48 bg-black border border-white/10 rounded-md shadow-xl py-2"
                 >
                   {moreLinks.map((link) => (
-                    <Link
+                    <p
                       key={link.href}
-                      href={link.href}
                       className="block px-4 py-2 text-xs font-semibold uppercase tracking-wide text-white/70 hover:text-white hover:bg-red-600 transition-colors duration-150"
                     >
                       {link.name}
-                    </Link>
+                    </p>
                   ))}
                 </motion.div>
               )}
@@ -141,9 +142,9 @@ const Navbar = () => {
         {/* Right icons */}
         <div className="hidden md:flex items-center gap-6">
           {iconLinks.map(({ icon: Icon, href, label }) => (
-            <Link key={href} href={href} aria-label={label}>
+            <p key={href} aria-label={label}>
               <Icon className="w-5 h-5 text-white hover:text-red-600 transition-colors duration-200" />
-            </Link>
+            </p>
           ))}
         </div>
 
@@ -161,7 +162,9 @@ const Navbar = () => {
                 <Drawer.Dialog className="w-72 bg-black">
                   <div className="flex items-center justify-between px-6 pt-6 pb-4 border-b border-white/10">
                     <Link href="/" className="flex items-center" slot="close">
-                      <span className={`${antonFont.className} px-2.5 py-1 text-white font-black text-sm tracking-wide uppercase`}>
+                      <span
+                        className={`${antonFont.className} px-2.5 py-1 text-white font-black text-sm tracking-wide uppercase`}
+                      >
                         Demon Shop
                       </span>
                     </Link>
@@ -201,7 +204,12 @@ const Navbar = () => {
                         className="flex items-center justify-around pb-4 pt-4 border-t border-white/10"
                       >
                         {iconLinks.map(({ icon: Icon, href, label }) => (
-                          <Link key={href} href={href} aria-label={label} slot="close">
+                          <Link
+                            key={href}
+                            href={href}
+                            aria-label={label}
+                            slot="close"
+                          >
                             <Icon className="w-5 h-5 text-white/80 hover:text-white transition-colors duration-200" />
                           </Link>
                         ))}

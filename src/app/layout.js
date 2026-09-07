@@ -2,6 +2,7 @@ import Navbar from "@/components/shared/Navbar";
 import "./globals.css";
 import { ibmPlexMono } from "@/lib/fonts";
 import Footer from "@/components/shared/Footer";
+import SmoothScroll from "@/components/SmoothScroll";
 
 export const metadata = {
   title: {
@@ -19,8 +20,10 @@ export default function RootLayout({ children }) {
         suppressHydrationWarning
       >
         <Navbar></Navbar>
-        <main>{children}</main>
-        <Footer/>
+        <SmoothScroll>
+          <main>{children}</main>
+        </SmoothScroll>
+        <Footer />
       </body>
     </html>
   );

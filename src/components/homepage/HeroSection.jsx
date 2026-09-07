@@ -5,12 +5,9 @@ import { antonFont } from "@/lib/fonts";
 
 const HeroSection = () => {
   return (
-    // mt-10 pushes the hero below the 40px (h-10) marquee bar.
-    // h-[calc(100vh-2.5rem)] makes marquee + hero add up to exactly one viewport.
     <section className="relative mt-10 h-[calc(100vh-2.5rem)] w-full overflow-hidden bg-black">
       <Marquee />
 
-      {/* Background video */}
       <video
         autoPlay
         muted
@@ -22,10 +19,8 @@ const HeroSection = () => {
         <source src="/hero.mp4" type="video/mp4" />
       </video>
 
-      {/* Dark overlay so text stays readable over any footage */}
       <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/20 to-black/40" />
 
-      {/* Content */}
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-20 md:px-10 md:pb-28">
         <div className="flex items-center gap-2 mb-4">
           <span className="h-2 w-2 rounded-full bg-red-600 animate-pulse" />

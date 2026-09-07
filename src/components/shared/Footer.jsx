@@ -41,8 +41,7 @@ const linkColumns = [
   },
 ];
 
-// Simple monogram mark — swap this <svg> for your real logo file
-// (e.g. an <Image src="/images/logo.svg" .../>) whenever you have one.
+
 const LogoMark = () => (
   <svg width="36" height="36" viewBox="0 0 36 36" fill="none">
     <path
@@ -94,7 +93,6 @@ const socialButtons = [
 const Footer = () => {
   return (
     <footer className="relative w-full bg-black text-white overflow-hidden">
-      {/* Giant faded brand watermark */}
       <span
         aria-hidden="true"
         className="pointer-events-none select-none absolute top-1/2 right-0 -translate-y-1/2 translate-x-[8%] text-white/5 font-black uppercase leading-none text-[14rem] md:text-[18rem] whitespace-nowrap"
@@ -104,7 +102,6 @@ const Footer = () => {
 
       <div className="relative z-10 px-6 md:px-16 pt-20 pb-14">
         <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,280px)_1fr] gap-14 lg:gap-20">
-          {/* Brand column */}
           <div>
             <Link href="/" className="inline-flex items-center gap-2 mb-6">
               <LogoMark />
@@ -135,7 +132,6 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Link columns */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-10">
             {linkColumns.map((col) => (
               <div key={col.title}>
@@ -159,7 +155,6 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom bar */}
       <div className="relative z-10 border-t border-white/10">
         <div className="px-6 md:px-16 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-xs text-white/40 font-mono order-2 md:order-1">

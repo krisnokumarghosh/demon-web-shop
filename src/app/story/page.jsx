@@ -47,7 +47,6 @@ const aboutItems = [
   },
 ];
 
-// Shared stagger/entrance variants used across the page's sections.
 const fadeUpContainer = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
@@ -61,7 +60,6 @@ const fadeUpItem = {
 const OurStoryPage = () => {
   return (
     <main className="w-full bg-black text-white">
-      {/* ---------------- 1. Hero ---------------- */}
       <section className="px-6 md:px-10 pt-32 md:pt-40 pb-16 md:pb-20">
         <motion.div
           initial="hidden"
@@ -110,7 +108,6 @@ const OurStoryPage = () => {
         </motion.div>
       </section>
 
-      {/* ---------------- 2. Quote + CTA ---------------- */}
       <section className="px-6 md:px-10 pb-20 md:pb-28">
         <motion.div
           initial="hidden"
@@ -165,7 +162,6 @@ const OurStoryPage = () => {
 
       <div className="border-t border-white/10" />
 
-      {/* ---------------- 3. About (structured facts) ---------------- */}
       <section className="px-6 md:px-10 py-16 md:py-20">
         <motion.div
           initial="hidden"

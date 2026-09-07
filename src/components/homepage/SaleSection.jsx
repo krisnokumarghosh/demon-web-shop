@@ -13,15 +13,7 @@ const SaleSection = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // --- Refs -----------------------------------------------------------
-  // sectionRef  -> the element ScrollTrigger pins (the scroll-jack area)
-  // stackRef    -> the relative container the cards are absolutely
-  //                positioned inside (this is what gives them a shared
-  //                stacking context / coordinate space)
-  // cardMapRef  -> id -> DOM node, filled via ref callbacks. We use a
-  //                Map (not an array reset during render) because
-  //                mutating a ref's `.current` directly in the render
-  //                body throws in modern React — see setCardRef below.
+  
   const sectionRef = useRef(null);
   const stackRef = useRef(null);
   const cardMapRef = useRef(new Map());
@@ -32,7 +24,6 @@ const SaleSection = () => {
     else map.delete(id);
   };
 
-  // --- Data -------------------------------------------------------------
   useEffect(() => {
     let ignore = false;
 
@@ -61,34 +52,23 @@ const SaleSection = () => {
     };
   }, []);
 
-  // --- Animation ----------------------------------------------------
   useEffect(() => {
     if (!products.length) return;
     if (!sectionRef.current || !stackRef.current) return;
 
-    // Register once. GSAP no-ops a duplicate registerPlugin call, but
-    // guarding keeps this explicit and avoids any React StrictMode /
-    // Fast Refresh double-invoke surprises in dev.
+   
     gsap.registerPlugin(ScrollTrigger);
 
-    // Ordered array of the actual card DOM nodes, front-to-back
-    // (index 0 = card that starts in the foreground).
+   
     const cards = products
       .map((p) => cardMapRef.current.get(p.id))
       .filter(Boolean);
 
     if (cards.length < 2) return;
 
-    // gsap.context() scopes every tween/ScrollTrigger created inside it
-    // to this component, so ctx.revert() below cleanly kills all of
-    // them on unmount or when `products` changes — no leaked
-    // ScrollTriggers, no duplicates on re-run.
+   
     const ctx = gsap.context(() => {
-      // gsap.matchMedia() gives you the "responsive calculations for
-      // desktop/tablet/mobile" requirement natively: each breakpoint
-      // gets its own values AND its own automatic cleanup — when the
-      // viewport crosses a breakpoint, GSAP reverts the previous
-      // block's tweens/triggers and reruns the matching one.
+     
       const mm = gsap.matchMedia();
 
       mm.add(
@@ -100,27 +80,17 @@ const SaleSection = () => {
         (context) => {
           const { isMobile, isTablet } = context.conditions;
 
-          // How far back (in px) each stacked card sits behind the
-          // active one, and how much smaller/dimmer it gets per level
-          // of depth. Smaller values on mobile so the stack doesn't
-          // eat the whole narrow viewport.
+        
           const STACK_OFFSET = isMobile ? 14 : isTablet ? 20 : 28;
           const SCALE_STEP = isMobile ? 0.035 : 0.045;
           const OPACITY_STEP = 0.12;
 
-          // How much scroll distance (in viewport heights) each
-          // card-to-card transition consumes. 1 = one full screen of
-          // scrolling per card change; mobile gets a slightly shorter
-          // throw so the section doesn't feel like it drags forever.
+       
           const VH_PER_STEP = isMobile ? 0.8 : 1;
 
           const n = cards.length;
 
-          // --- Initial stack state ----------------------------------
-          // Card 0 is fully front (no offset/scale/opacity change).
-          // Card i sits `i` levels deep: pushed down+back, slightly
-          // scaled down, slightly dimmed, and under the cards in
-          // front of it (lower z-index).
+         
           cards.forEach((card, i) => {
             gsap.set(card, {
               yPercent: 0,
@@ -132,30 +102,22 @@ const SaleSection = () => {
             });
           });
 
-          // --- Single scrubbed timeline, driven by one pinned trigger ---
           const tl = gsap.timeline({
             defaults: { ease: "power2.inOut" },
             scrollTrigger: {
               trigger: sectionRef.current,
               start: "top top",
-              // Total pinned scroll distance = one "step" per card
-              // transition (n - 1 transitions to get from card 1 to
-              // card n in front). This is what makes progress along
-              // the timeline map 1:1 to scroll position.
+            
               end: () => `+=${(n - 1) * VH_PER_STEP * window.innerHeight}`,
               pin: sectionRef.current,
               pinSpacing: true,
-              scrub: 1, // slight smoothing lag; still fully scroll-driven
+              scrub: 1, 
               anticipatePin: 1,
               invalidateOnRefresh: true,
             },
           });
 
-          // For each transition i -> i+1: the current front card exits
-          // upward, and every card behind it steps forward one level
-          // (its new depth = old depth - 1). Both happen at the same
-          // timeline position (`i`) so they read as one continuous
-          // motion rather than a sequence of separate jumps.
+        
           for (let i = 0; i < n - 1; i++) {
             const exiting = cards[i];
             const rest = cards.slice(i + 1);
@@ -172,7 +134,7 @@ const SaleSection = () => {
             );
 
             rest.forEach((card, restIdx) => {
-              const newDepth = restIdx; // 0 = becomes the new front card
+              const newDepth = restIdx; 
               tl.to(
                 card,
                 {
@@ -206,8 +168,6 @@ const SaleSection = () => {
 
   return (
     <div className="relative w-full bg-white overflow-x-hidden">
-      {/* Heading — normal document flow, scrolls away before the
-          pinned stack takes over. Not part of the pinned area. */}
       <div className="px-6 md:px-10 py-16 md:py-20 bg-linear-to-b from-[#fff5f0] to-white flex items-end justify-between">
         <div>
           <p className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-red-600 mb-2`}>
@@ -226,16 +186,12 @@ const SaleSection = () => {
         </Link>
       </div>
 
-      {/* PINNED AREA — sectionRef is what ScrollTrigger pins. Full
-          viewport height + centers its content, so once pinned it
-          behaves like a fixed "stage" the cards animate inside of. */}
+     
       <section
         ref={sectionRef}
         className="relative h-screen w-full flex items-center justify-center overflow-hidden "
       >
-        {/* stackRef — shared coordinate space for the absolutely
-            positioned cards. Sized to the card itself; all cards sit
-            on top of one another here via position: absolute. */}
+      
         <div
           ref={stackRef}
           className="relative w-[85%] sm:w-[70%] md:w-130 aspect-3/4 sm:aspect-4/5"

@@ -14,7 +14,6 @@ const FILTERS = ["All", "Front", "Back", "On Model"];
 const resolveImage = (src) =>
   src?.startsWith("http") ? src : `${IMAGE_BASE}${src}`;
 
-// Container/item variants for the staggered grid entrance animation.
 const gridContainer = {
   hidden: {},
   show: {
@@ -57,8 +56,6 @@ const LookBookPage = () => {
     };
   }, []);
 
-  // Flatten every product into its Front / Back / On Model shots.
-  // Front = images[0], Back = images[1], On Model = images[3].
   const lookbookImages = useMemo(() => {
     return products.flatMap((product) => {
       const { id, name, images } = product;
@@ -85,10 +82,8 @@ const LookBookPage = () => {
 
   return (
     <main className="w-full bg-white">
-      {/* ---------------- Hero banner ---------------- */}
       <section className="relative w-full bg-black overflow-hidden">
         <div className="relative px-6 md:px-10 pt-32 md:pt-40 pb-10 md:pb-12">
-          {/* Faint giant year, right side */}
           <span className="pointer-events-none select-none absolute top-24 md:top-32 right-6 md:right-10 text-white/4 font-black text-8xl md:text-9xl leading-none">
             2024
           </span>
@@ -120,7 +115,6 @@ const LookBookPage = () => {
         </div>
       </section>
 
-      {/* ---------------- Filter + image grid ---------------- */}
       <section className="px-6 md:px-10 py-10">
         <div className="flex flex-col sm:flex-row gap-4 sm:items-center sm:justify-between mb-8">
           <div className="flex flex-wrap gap-2">
@@ -195,7 +189,6 @@ const LookBookPage = () => {
         )}
       </section>
 
-      {/* ---------------- Bottom CTA banner ---------------- */}
       <section className="w-full mt-10 bg-black py-20 md:py-28 flex flex-col items-center justify-center text-center px-6">
         <h2 className={`${antonFont.className} font-black uppercase text-white text-4xl sm:text-5xl md:text-6xl leading-none mb-4`}>
           Shop The Collection

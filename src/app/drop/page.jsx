@@ -9,10 +9,8 @@ import { antonFont } from "@/lib/fonts";
 
 const DATA_URL = "https://demon-web-shop.vercel.app/data.json";
 
-// Swap this for your own background image path (place it in /public/images/).
 const HERO_BACKGROUND = "/images/banner-2.jpg";
 
-// The drop's target date/time — countdown counts down to this.
 const DROP_DATE = new Date("2026-09-01T00:00:00");
 
 const getTimeLeft = () => {
@@ -29,7 +27,6 @@ const getTimeLeft = () => {
   };
 };
 
-// Shared stagger/entrance variants used across the page's sections.
 const fadeUpContainer = {
   hidden: {},
   show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
@@ -81,7 +78,6 @@ const DropPage = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!email.trim()) return;
-    // Wire this up to your actual waitlist/email service.
     console.log("Waitlist signup:", email);
     setSubmitted(true);
   };
@@ -94,7 +90,6 @@ const DropPage = () => {
 
   return (
     <main className="w-full bg-white">
-      {/* ---------------- 1. Hero ---------------- */}
       <section className="relative w-full min-h-[60vh] md:min-h-[70vh] flex items-center justify-center overflow-hidden bg-black">
         <Image
           src={HERO_BACKGROUND}
@@ -144,7 +139,6 @@ const DropPage = () => {
         </motion.div>
       </section>
 
-      {/* ---------------- 2. Countdown ---------------- */}
       <section className="w-full bg-linear-to-b from-[#fff5f0] to-white py-20 md:py-28 px-6">
         <motion.div
           initial="hidden"
@@ -212,7 +206,6 @@ const DropPage = () => {
         </motion.div>
       </section>
 
-      {/* ---------------- 3. Waitlist ---------------- */}
       <section className="w-full bg-white py-20 px-6 border-t border-black/5">
         <motion.div
           initial="hidden"
@@ -273,7 +266,6 @@ const DropPage = () => {
         </motion.div>
       </section>
 
-      {/* ---------------- 4. While you wait ---------------- */}
       <section className="w-full bg-linear-to-b from-[#fff5f0] to-white py-16 md:py-20 px-6 md:px-10 border-t border-red-600">
         <p className="text-xs font-bold uppercase tracking-widest text-red-600 mb-3">
           The_Origin_Drop // Still Available

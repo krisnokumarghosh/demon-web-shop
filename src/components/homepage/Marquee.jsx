@@ -14,7 +14,6 @@ const Marquee = () => {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    // Same 40px threshold the Navbar uses, so both move together.
     const onScroll = () => setVisible(window.scrollY <= 40);
     onScroll();
     window.addEventListener("scroll", onScroll);

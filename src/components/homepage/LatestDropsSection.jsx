@@ -8,7 +8,6 @@ import { antonFont } from "@/lib/fonts";
 
 const DATA_URL = "https://demon-web-shop.vercel.app/data.json";
 
-// Stagger the cards in one after another as the section scrolls into view.
 const container = {
   hidden: {},
   show: {
@@ -29,7 +28,6 @@ const LatestDropsSection = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Fetch + filter to latest:true items, capped at 4
   useEffect(() => {
     let ignore = false;
 
@@ -86,7 +84,6 @@ const LatestDropsSection = () => {
         </Link>
       </div>
 
-      {/* --- Mobile: native scroll-snap swiper (below sm breakpoint) --- */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -101,7 +98,6 @@ const LatestDropsSection = () => {
         ))}
       </motion.div>
 
-      {/* --- sm and up: normal grid --- */}
       <motion.div
         variants={container}
         initial="hidden"

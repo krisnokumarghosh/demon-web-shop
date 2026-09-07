@@ -17,13 +17,10 @@ import {
 import { antonFont } from "@/lib/fonts";
 import { ArrowRight, Heart } from "@gravity-ui/icons";
 
-// Change this if your product images live in the local /public folder
-// instead of being served from the API's own domain.
+
 const IMAGE_BASE = "https://demon-web-shop.vercel.app";
 
-// Static size-guide measurements (cm) — the API has no per-size
-// measurement data, so this mirrors the reference design as a fixed
-// reference table for all products.
+
 const SIZE_GUIDE = [
   { size: "XS", chest: 42, length: 66, shoulder: 42 },
   { size: "S", chest: 47, length: 68, shoulder: 44 },
@@ -36,10 +33,7 @@ const SIZE_GUIDE = [
 const resolveImage = (src) =>
   src?.startsWith("http") ? src : `${IMAGE_BASE}${src}`;
 
-// The `details` string always ends with the same handful of standard
-// facts ("240gsm heavyweight cotton. Oversized fit. Garment washed.
-// Anime graphic screenprint.") — pull those out into a proper spec
-// grid instead of just dumping the whole sentence as a paragraph.
+
 const extractSpecs = (detailLines) => {
   const find = (keyword) =>
     detailLines.find((l) => l.toLowerCase().includes(keyword));
@@ -56,7 +50,7 @@ const ProductDetailsClient = ({ product }) => {
   const { name, ColorWay, price, qty, size, details, images, type } = product;
 
   const [selectedSize, setSelectedSize] = useState(null);
-  const [openSection, setOpenSection] = useState(null); // "size" | "shipping" | null
+  const [openSection, setOpenSection] = useState(null); 
   const [activeImage, setActiveImage] = useState(0);
 
   const imageBoxRef = useRef(null);
@@ -68,35 +62,29 @@ const ProductDetailsClient = ({ product }) => {
     .split(". ")
     .map((line) => line.trim().replace(/\.$/, ""))
     .filter(Boolean);
-  const storyLine = detailLines[0]; // the one creative/descriptive sentence
+  const storyLine = detailLines[0]; 
   const specs = extractSpecs(detailLines);
 
   const toggleSection = (section) =>
     setOpenSection((prev) => (prev === section ? null : section));
 
-  // Keep a ref mirror of activeImage so the wheel handler (added once,
-  // not re-bound on every image change) always reads the latest value.
+ 
   useEffect(() => {
     activeImageRef.current = activeImage;
   }, [activeImage]);
 
-  // Image changes ONLY when the wheel/trackpad/touch is used directly
-  // over the image box — normal page scroll everywhere else, and past
-  // the first/last image, is left completely untouched.
+  
   useEffect(() => {
     const box = imageBoxRef.current;
     if (!box || images.length < 2) return;
 
-    // Shared step logic used by both wheel (desktop) and touch swipe
-    // (mobile) below. Defined inside the effect so it doesn't need to
-    // be a dependency — it only ever reads refs and `images.length`,
-    // which this effect already re-runs on.
+   
     const attemptChange = (goingForward) => {
       const atStart = activeImageRef.current === 0;
       const atEnd = activeImageRef.current === images.length - 1;
 
       if ((goingForward && atEnd) || (!goingForward && atStart)) {
-        return false; // let normal page scroll continue
+        return false; 
       }
 
       if (!lockedRef.current) {
@@ -111,26 +99,25 @@ const ProductDetailsClient = ({ product }) => {
         }, 550);
       }
 
-      return true; // captured — caller should preventDefault
+      return true;
     };
 
-    // --- Desktop: mouse wheel / trackpad ---
+    
     const handleWheel = (e) => {
       const captured = attemptChange(e.deltaY > 0);
       if (captured) e.preventDefault();
     };
 
-    // --- Mobile/touch: vertical swipe ---
+    
     let startY = 0;
-    const SWIPE_THRESHOLD = 40; // px of finger movement before it counts
-
+    const SWIPE_THRESHOLD = 40; 
     const handleTouchStart = (e) => {
       startY = e.touches[0].clientY;
     };
 
     const handleTouchMove = (e) => {
       const currentY = e.touches[0].clientY;
-      const delta = startY - currentY; // > 0 = finger moving up = next image
+      const delta = startY - currentY; 
       const goingForward = delta > 0;
 
       if (Math.abs(delta) < SWIPE_THRESHOLD) return;
@@ -138,7 +125,7 @@ const ProductDetailsClient = ({ product }) => {
       const captured = attemptChange(goingForward);
       if (captured) {
         e.preventDefault();
-        startY = currentY; // allow one long swipe to step through several images
+        startY = currentY; 
       }
     };
 
@@ -156,7 +143,6 @@ const ProductDetailsClient = ({ product }) => {
   return (
     <div className="min-h-screen py-20">
       <div className="max-w-300 mx-auto px-6 py-12">
-        {/* Breadcrumb */}
         <div className="flex items-center gap-1.5 text-xs text-black/45 mb-10">
           <Link
             href="/collection"
@@ -171,7 +157,6 @@ const ProductDetailsClient = ({ product }) => {
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-          {/* ---------------- Sticky scroll-crossfade gallery ---------------- */}
           <div className="lg:sticky lg:top-24 self-start">
             <div
               ref={imageBoxRef}
@@ -198,7 +183,6 @@ const ProductDetailsClient = ({ product }) => {
                 {ColorWay}
               </span>
 
-              {/* Progress dots — reflect scroll position, not clickable */}
               {images.length > 1 && (
                 <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex gap-2">
                   {images.map((_, i) => (
@@ -214,7 +198,6 @@ const ProductDetailsClient = ({ product }) => {
             </div>
           </div>
 
-          {/* ---------------- Details ---------------- */}
           <div>
             <p className="text-red-600 text-xs font-bold tracking-widest uppercase mb-3">
               {type}
@@ -247,7 +230,6 @@ const ProductDetailsClient = ({ product }) => {
               </p>
             )}
 
-            {/* Size + actions */}
             <p
               className={`${antonFont.className} text-xs font-bold uppercase tracking-widest text-black mb-3`}
             >
@@ -282,9 +264,7 @@ const ProductDetailsClient = ({ product }) => {
               </button>
             </div>
 
-            {/* Specification grid */}
 
-            {/* Product Details accordion trigger-free section */}
             <div className="mt-10 pt-8 border-t border-black/10">
               <h2
                 className={`${antonFont.className} text-xs font-bold tracking-widest uppercase text-black/50 mb-4`}
@@ -294,7 +274,6 @@ const ProductDetailsClient = ({ product }) => {
               <p className="text-sm text-black/60 leading-relaxed">{details}</p>
             </div>
 
-            {/* Accordion: Size Guide */}
             <AccordionRow
               title="Size Guide"
               isOpen={openSection === "size"}
@@ -332,7 +311,6 @@ const ProductDetailsClient = ({ product }) => {
               </p>
             </AccordionRow>
 
-            {/* Accordion: Shipping & Returns */}
             <AccordionRow
               title="Shipping & Returns"
               isOpen={openSection === "shipping"}
@@ -346,7 +324,6 @@ const ProductDetailsClient = ({ product }) => {
               </div>
             </AccordionRow>
 
-            {/* Trust badges */}
           </div>
         </div>
       </div>

@@ -54,9 +54,7 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Marquee (and this transparent/offset state) only exists on the home
-  // page hero, before scrolling. Every other page, and home after scroll,
-  // gets the solid bg pinned to the very top.
+  
   const showMarqueeState = isHome && !scrolled;
   const isTransparent = showMarqueeState;
 
@@ -71,7 +69,6 @@ const Navbar = () => {
       }`}
     >
       <nav className="flex items-center justify-between px-6 md:px-10 py-4">
-        {/* Logo */}
         <Link href="/" className="flex items-center">
           <span
             className={`${antonFont.className} px-3 py-1.5 text-white font-black text-lg tracking-wide uppercase`}
@@ -80,7 +77,6 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Center Nav Links */}
         <ul className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
@@ -97,7 +93,6 @@ const Navbar = () => {
             </li>
           ))}
 
-          {/* More dropdown */}
           <li
             className="relative"
             onMouseEnter={() => setMoreOpen(true)}
@@ -139,7 +134,6 @@ const Navbar = () => {
           </li>
         </ul>
 
-        {/* Right icons */}
         <div className="hidden md:flex items-center gap-6">
           {iconLinks.map(({ icon: Icon, href, label }) => (
             <p key={href} aria-label={label}>
@@ -148,7 +142,6 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile: icons + drawer trigger */}
         <div className="flex md:hidden items-center gap-4">
           <Link href="/cart" aria-label="Cart">
             <ShoppingBag className="w-5 h-5 text-white" />

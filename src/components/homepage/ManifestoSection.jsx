@@ -4,7 +4,6 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { antonFont } from "@/lib/fonts";
 
-// Swap this for your own image path (place the file in /public/images/).
 const BACKGROUND_IMAGE = "/images/banner-2.jpg";
 
 const container = {
@@ -26,7 +25,6 @@ const item = {
 const ManifestoSection = () => {
   return (
     <section className="relative w-full min-h-[85vh] md:min-h-screen overflow-hidden bg-black">
-      {/* Background image — replace BACKGROUND_IMAGE above with your own path */}
       <Image
         src={BACKGROUND_IMAGE}
         alt="The Zenji Ethos"
@@ -36,12 +34,9 @@ const ManifestoSection = () => {
         className="object-cover"
       />
 
-      {/* Dark overlay — stronger on the left where the text sits, fading
-          out toward the right so the photography still reads clearly */}
       <div className="absolute inset-0 bg-linear-to-r from-black/95 via-black/60 to-black/20" />
       <div className="absolute inset-0 bg-linear-to-t from-black/70 via-transparent to-black/30" />
 
-      {/* Content */}
       <motion.div
         variants={container}
         initial="hidden"
@@ -50,7 +45,6 @@ const ManifestoSection = () => {
         className="relative z-10 h-full min-h-[85vh] md:min-h-screen flex items-center px-6 md:px-16"
       >
         <div className="max-w-xl">
-          {/* Label + accent underline */}
           <motion.div variants={item} className="mb-5">
             <p className="text-red-600 text-xs font-bold uppercase tracking-[0.3em] mb-3">
               Manifesto_001
@@ -58,7 +52,6 @@ const ManifestoSection = () => {
             <span className="block w-10 h-0.5 bg-red-600" />
           </motion.div>
 
-          {/* Heading */}
           <motion.h2
             variants={item}
             className={`${antonFont.className} font-black uppercase  text-6xl sm:text-7xl md:text-8xl tracking-tight`}
@@ -68,7 +61,6 @@ const ManifestoSection = () => {
             <span className="block text-white">Ethos</span>
           </motion.h2>
 
-          {/* Body copy */}
           <motion.p
             variants={item}
             className="mt-8 max-w-md font-mono text-sm md:text-[15px] leading-relaxed text-white/70"

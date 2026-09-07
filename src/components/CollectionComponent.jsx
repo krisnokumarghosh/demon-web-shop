@@ -56,10 +56,8 @@ const CollectionComponent = () => {
 
   return (
     <main className="w-full bg-white">
-      {/* ---------------- Hero header ---------------- */}
       <section className="relative w-full bg-black overflow-hidden">
         <div className="relative px-6 md:px-10 pt-32 md:pt-40 pb-10 md:pb-12">
-          {/* Faint giant count, top-right */}
           <span className="pointer-events-none select-none absolute top-24 md:top-32 right-6 md:right-10 text-white/10 font-black text-8xl md:text-9xl leading-none">
             {loading ? "" : products.length}
           </span>
@@ -90,7 +88,6 @@ const CollectionComponent = () => {
         </div>
       </section>
 
-      {/* ---------------- Filter + search bar ---------------- */}
       <section className=" bg-white border-b border-black/10">
         <div className="px-6 md:px-10 py-4 flex flex-col md:flex-row gap-4 md:items-center md:justify-between">
           <div className="flex flex-wrap gap-2">
@@ -124,7 +121,6 @@ const CollectionComponent = () => {
         </div>
       </section>
 
-      {/* ---------------- Product grid ---------------- */}
       <section className="px-6 md:px-10 py-10 md:py-14">
         {loading ? (
           <div className="py-20 flex items-center justify-center">
